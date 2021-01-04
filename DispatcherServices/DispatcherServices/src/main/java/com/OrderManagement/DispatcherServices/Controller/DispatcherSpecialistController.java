@@ -1,5 +1,6 @@
 package com.OrderManagement.DispatcherServices.Controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,16 +22,24 @@ public class DispatcherSpecialistController {
 	private SpecialistProxy specialistProxy;
 	
 	@GetMapping("specialist/{specialistId}")
-	public List<Specialists> getServiceByspecialistId(@PathVariable("specialistId") int no){
+	public List<Specialists> getServiceByspecialistId(@PathVariable("specialistId") int no)
+	{
 		List<Specialists> tr = specialistProxy.getServiceByspecialistId(no);
 		System.out.println("output"+tr);
 		return tr;
 	}
-	/*
-	 * @GetMapping("/specialists") public List<Specialists> getAllSpecialists(){
-	 * List<Specialists> tr = specialistProxy.getAllSpecialists();
-	 * 
-	 * return tr; }
-	 */
-
+	
+	  @GetMapping("/specialists") 
+	  public List<Specialists> getAllAvailableSpecialists()
+	  {
+		  List<Specialists> tr = specialistProxy.getAllSpecialists();
+		  List<Specialists> availableSpecialists = new ArrayList<>();
+		  for (Specialists specialists : tr) {
+			  if(specialists.getStatus().equalsIgnoreCase("available"))
+			  {
+			availableSpecialists.add(specialists);
+			  }
+	  }
+	  return availableSpecialists; 
+	  }
 }
