@@ -29,10 +29,19 @@ public class DispatcherSpecialistController {
 		return tr;
 	}
 	
+	@GetMapping("specialists/{SpecialistName}")
+	public List<Specialists> getSpecialistbyName(@PathVariable("SpecialistName") String no){
+	
+		List<Specialists> transaction = specialistService.getSpecialistbyName(no);
+		return transaction;
+	}
+	
 	  @GetMapping("/specialists") 
 	  public List<Specialists> getAllAvailableSpecialists()
 	  {
 		  List<Specialists> availableSpecialists = specialistService.getAllSpecialists();
 		  return availableSpecialists; 
 	  }
+	  
+	  
 }

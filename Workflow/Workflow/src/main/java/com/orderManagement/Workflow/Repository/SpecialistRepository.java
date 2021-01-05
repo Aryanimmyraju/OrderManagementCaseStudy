@@ -15,4 +15,6 @@ public interface SpecialistRepository extends JpaRepository <Specialists,Integer
 	
 	
 
+	List<Specialists> getSpecialistByspecialistName(String no);
+
 }

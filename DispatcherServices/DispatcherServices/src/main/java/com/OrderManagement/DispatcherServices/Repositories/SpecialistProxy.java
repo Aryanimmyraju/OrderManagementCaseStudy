@@ -19,5 +19,7 @@ public interface SpecialistProxy {
 
 	@GetMapping("/specialists")
 	public List<Specialists> getAllSpecialists();
-
+	
+	@GetMapping("specialists/{SpecialistName}")
+	public List<Specialists> getSpecialistbyName(@PathVariable("SpecialistName") String no);
 }

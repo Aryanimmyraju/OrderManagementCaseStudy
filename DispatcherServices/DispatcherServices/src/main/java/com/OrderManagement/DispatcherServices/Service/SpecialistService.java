@@ -5,6 +5,8 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import com.OrderManagement.DispatcherServices.Model.Specialists;
 import com.OrderManagement.DispatcherServices.Repositories.SpecialistProxy;
@@ -17,6 +19,12 @@ public class SpecialistService {
 
 	public List<Specialists> getServiceByspecialistId(int no) {
 		List<Specialists> tr = specialistProxy.getServiceByspecialistId(no);
+		return tr;
+	}
+	
+	
+	public List<Specialists> getSpecialistbyName(String no){
+		List<Specialists> tr = specialistProxy.getSpecialistbyName(no);
 		return tr;
 	}
 
