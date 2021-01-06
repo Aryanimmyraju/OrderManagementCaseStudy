@@ -34,10 +34,13 @@ public class SpecialistController {
 		List<Specialists> transaction = specialistService.getSpecialistByspecialistName(no);
 		return transaction;
 	}
-	@GetMapping("/specialists") public List<Specialists> getAllSpecialists(){
+	@GetMapping("/specialists") 
+	public List<Specialists> getAllSpecialists(){
 		  List<Specialists> tr = specialistService.getAllSpecialists();
-		  
-		  return tr; }
+		  return tr; 
+	}
+	
+	
 	
 
 }
