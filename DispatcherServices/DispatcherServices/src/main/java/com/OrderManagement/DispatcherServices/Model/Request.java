@@ -14,31 +14,36 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-
+@Entity	
+@Table(name="Request")
 public class Request {
-	
+	@Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name="request_Id")
 	private int requestId;
 	
-	
+	@Column(name="request_Name")
 	private String requestName;
 	
-	
+	@Column(name="user_Id")
 	private int userId;
 	
-	
+	@Column(name="start_Date")
+	@Temporal(TemporalType.DATE)
 	private Date startDate;
 	
-	
+	@Column(name="end_Date")
 	private Date endDate;
 	
-	
+	@Column(name="priority")
 	private String priority;
 	
-	
+	@Column(name="complexity")
 	private String complexity;
 	
 	
-
+	@OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "service_Id", referencedColumnName = "service_Id")
 	private Services serviceId;
 
 	public Request(int requestId, String requestName, int userId, Date startDate, Date endDate, String priority,

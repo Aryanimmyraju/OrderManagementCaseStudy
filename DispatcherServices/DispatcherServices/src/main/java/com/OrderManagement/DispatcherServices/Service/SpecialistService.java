@@ -8,14 +8,20 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import com.OrderManagement.DispatcherServices.Model.Services;
 import com.OrderManagement.DispatcherServices.Model.Specialists;
 import com.OrderManagement.DispatcherServices.Repositories.SpecialistProxy;
+import com.OrderManagement.DispatcherServices.Repositories.SpecialistRepository;
 
 @Service
 public class SpecialistService {
 	
 	@Autowired
 	SpecialistProxy specialistProxy;
+	
+	@Autowired
+	SpecialistRepository specialistRepository;
+	
 
 	public List<Specialists> getServiceByspecialistId(int no) {
 		List<Specialists> tr = specialistProxy.getServiceByspecialistId(no);
@@ -38,6 +44,14 @@ public class SpecialistService {
 			  }
 	  }
 		  return availableSpecialists;
+	}
+	
+	public void saveAll(List<Specialists> list)
+	{
+		for(Specialists specialist: list)
+		{
+			specialistRepository.save(specialist);
+		}
 	}
 
 	

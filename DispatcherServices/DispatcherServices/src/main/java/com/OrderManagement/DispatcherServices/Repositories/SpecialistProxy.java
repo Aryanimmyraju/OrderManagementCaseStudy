@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import com.OrderManagement.DispatcherServices.Model.Request;
+import com.OrderManagement.DispatcherServices.Model.Services;
 import com.OrderManagement.DispatcherServices.Model.Specialists;
 
 @FeignClient(name="workflow")
@@ -26,4 +27,7 @@ public interface SpecialistProxy {
 	
 	@GetMapping("/requests")
 	public List<Request> getAllRequest();
+	
+	@GetMapping("/services")
+	public List<Services> getAllServices();
 }

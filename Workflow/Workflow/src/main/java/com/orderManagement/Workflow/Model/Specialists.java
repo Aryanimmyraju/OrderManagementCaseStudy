@@ -1,11 +1,5 @@
 package com.orderManagement.Workflow.Model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,12 +19,27 @@ public class Specialists {
 	
 	@Column(name="status")
 	private String status;
+	
+	@OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "service_Id", referencedColumnName = "service_Id")
+	private Services servicesid;
 
-	public Specialists(int specialistId, String specialistName, String status) {
+	
+
+	public Specialists(int specialistId, String specialistName, String status, Services servicesid) {
 		super();
 		this.specialistId = specialistId;
 		this.specialistName = specialistName;
 		this.status = status;
+		this.servicesid = servicesid;
+	}
+
+	public Services getServicesid() {
+		return servicesid;
+	}
+
+	public void setServicesid(Services servicesid) {
+		this.servicesid = servicesid;
 	}
 
 	public Specialists() {

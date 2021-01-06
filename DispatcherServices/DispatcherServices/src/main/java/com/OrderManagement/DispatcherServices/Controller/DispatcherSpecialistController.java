@@ -1,26 +1,44 @@
 package com.OrderManagement.DispatcherServices.Controller;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.OrderManagement.DispatcherServices.Model.RequestSpecialistMapping;
 import com.OrderManagement.DispatcherServices.Model.Specialists;
 import com.OrderManagement.DispatcherServices.Repositories.RequestSpecialistRepository;
 import com.OrderManagement.DispatcherServices.Repositories.SpecialistProxy;
+import com.OrderManagement.DispatcherServices.Service.MappingService;
+import com.OrderManagement.DispatcherServices.Service.RequestService;
+import com.OrderManagement.DispatcherServices.Service.ServicesService;
 import com.OrderManagement.DispatcherServices.Service.SpecialistService;
+
 
 
 @RestController
 public class DispatcherSpecialistController {
 	
-
+	@Autowired
+	private MappingService mapping;
 	
 	@Autowired
 	private SpecialistService specialistService;
+	
+	@Autowired
+	private RequestService requestService;
+	
+	@Autowired
+	private ServicesService servicesService;
+	
+	@Autowired
+	private SpecialistProxy specialistProxy;
 	
 	@GetMapping("specialist/{specialistId}")
 	public List<Specialists> getServiceByspecialistId(@PathVariable("specialistId") int no)
@@ -40,6 +58,22 @@ public class DispatcherSpecialistController {
 	  public List<Specialists> getAllAvailableSpecialists()
 	  {
 		  List<Specialists> availableSpecialists = specialistService.getAllSpecialists();
+		  return availableSpecialists; 
+	  }
+	  
+	  @PostMapping("/mapping")
+		public void addMapping(@RequestBody RequestSpecialistMapping requestSpecialist){
+		  requestService.saveAll(specialistProxy.getAllRequest());
+			servicesService.saveAll(specialistProxy.getAllServices());
+			specialistService.saveAll(specialistProxy.getAllSpecialists());
+			requestSpecialist.setStartDate(LocalDate.now());
+			mapping.saveMapping(requestSpecialist);
+			
+		}
+	  @GetMapping("/mappings") 
+	  public List<RequestSpecialistMapping> getAllMappings()
+	  {
+		  List<RequestSpecialistMapping> availableSpecialists = mapping.getAllRequestSpecialistMappings();
 		  return availableSpecialists; 
 	  }
 	  

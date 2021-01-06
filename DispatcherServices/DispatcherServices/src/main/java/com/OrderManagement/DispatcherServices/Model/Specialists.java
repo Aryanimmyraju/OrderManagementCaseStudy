@@ -1,12 +1,29 @@
 package com.OrderManagement.DispatcherServices.Model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.*;
+
+@Entity	
+@Table(name="Specialists")
 public class Specialists {
-	
+	@Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name="specialist_Id")
 	private int specialistId;
 	
+	@Column(name="specialist_Name")
 	private String specialistName;
 	
+	
+	@Column(name="status")
 	private String status;
 
 	public Specialists(int specialistId, String specialistName, String status) {
@@ -36,6 +53,7 @@ public class Specialists {
 		this.specialistName = specialistName;
 	}
 
+	
 
 	public String getStatus() {
 		return status;
@@ -43,12 +61,6 @@ public class Specialists {
 
 	public void setStatus(String status) {
 		this.status = status;
-	}
-
-	@Override
-	public String toString() {
-		return "Specialists [specialistId=" + specialistId + ", specialistName=" + specialistName + ", status=" + status
-				+ "]";
 	}
 	
 	

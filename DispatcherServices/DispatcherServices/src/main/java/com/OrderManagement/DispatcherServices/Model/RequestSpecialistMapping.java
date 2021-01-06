@@ -1,5 +1,6 @@
 package com.OrderManagement.DispatcherServices.Model;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 import javax.persistence.CascadeType;
@@ -22,24 +23,32 @@ public class RequestSpecialistMapping {
 	@Column(name="Request_Specialist_Id")
 	private int RequestSpecialistId;
 	
-	@Column(name="request_Id")
-	private int requestId;
+
 	
-	@Column(name="specialist_Id")
-	private int specialistId;
+	  @OneToOne(cascade = CascadeType.ALL)
+	  
+	  @JoinColumn(name = "request_Id", referencedColumnName = "request_Id") 
+	  private Request requestId;
+	  
+	  
+
+	  @OneToOne(cascade = CascadeType.ALL)
+	  @JoinColumn(name = "specialist_Id", referencedColumnName = "specialist_Id") 
+	  private Specialists specialistId;
+	 
+	
 	
 	@Column(name="status")
 	private String status;
 	
 	@Column(name="start_Date")
-	@Temporal(TemporalType.DATE)
-	private Date startDate;
+	private LocalDate startDate;
 	
 	@Column(name="end_Date")
 	private Date endDate;
 
-	public RequestSpecialistMapping(int requestSpecialistId, int requestId, int specialistId, String status,
-			Date startDate, Date endDate) {
+	public RequestSpecialistMapping(int requestSpecialistId, Request requestId, Specialists specialistId, String status,
+			LocalDate startDate, Date endDate) {
 		super();
 		RequestSpecialistId = requestSpecialistId;
 		this.requestId = requestId;
@@ -61,19 +70,19 @@ public class RequestSpecialistMapping {
 		RequestSpecialistId = requestSpecialistId;
 	}
 
-	public int getRequestId() {
+	public Request getRequestId() {
 		return requestId;
 	}
 
-	public void setRequestId(int requestId) {
+	public void setRequestId(Request requestId) {
 		this.requestId = requestId;
 	}
 
-	public int getSpecialistId() {
+	public Specialists getSpecialistId() {
 		return specialistId;
 	}
 
-	public void setSpecialistId(int specialistId) {
+	public void setSpecialistId(Specialists specialistId) {
 		this.specialistId = specialistId;
 	}
 
@@ -85,12 +94,12 @@ public class RequestSpecialistMapping {
 		this.status = status;
 	}
 
-	public Date getStartDate() {
+	public LocalDate getStartDate() {
 		return startDate;
 	}
 
-	public void setStartDate(Date startDate) {
-		this.startDate = startDate;
+	public void setStartDate(LocalDate localDate) {
+		this.startDate = localDate;
 	}
 
 	public Date getEndDate() {
