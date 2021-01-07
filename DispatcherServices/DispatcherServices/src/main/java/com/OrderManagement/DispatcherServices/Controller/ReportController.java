@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.OrderManagement.DispatcherServices.Model.ReportData;
@@ -20,9 +21,12 @@ public class ReportController {
 	@Autowired
 	private reportService reportService;
 	
+	
+	
 	@GetMapping("/reportdata")
 	public List<ReportData> reportDatas(){
 		List<RequestSpecialistMapping> requestSpecialistMappings= mappingService.getAllRequestSpecialistMappings();
+		System.out.println(requestSpecialistMappings);
 		for(RequestSpecialistMapping requestSpecialistMapping: requestSpecialistMappings) {
 			ReportData reportData = new ReportData();
 			reportData.setRequestId(requestSpecialistMapping.getRequestId().getRequestId());

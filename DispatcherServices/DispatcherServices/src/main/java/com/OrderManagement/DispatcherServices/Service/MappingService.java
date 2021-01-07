@@ -28,20 +28,15 @@ public class MappingService {
 	public List<RequestSpecialistMapping> getAllRequestSpecialistMappings()
 	{
 		List<RequestSpecialistMapping> list = requestSpecialistRepository.findAll();
-		List<RequestSpecialistMapping> finalList = new ArrayList<>();
-		for (RequestSpecialistMapping rsm:list)
-		{
-			if(rsm.getStatus().equalsIgnoreCase("no"))
-			{
-				finalList.add(rsm);
-			}
-		}
-		Collections.sort(finalList, new Comparator<RequestSpecialistMapping>() {
-			  public int compare(RequestSpecialistMapping o1, RequestSpecialistMapping o2) {
-			      return o1.getStartDate().compareTo(o2.getStartDate());
-			  }
-			});
-		return finalList;
+		/*
+		 * List<RequestSpecialistMapping> finalList = new ArrayList<>(); for
+		 * (RequestSpecialistMapping rsm:list) {
+		 * if(rsm.getStatus().equalsIgnoreCase("no")) { finalList.add(rsm); } }
+		 * Collections.sort(finalList, new Comparator<RequestSpecialistMapping>() {
+		 * public int compare(RequestSpecialistMapping o1, RequestSpecialistMapping o2)
+		 * { return o1.getStartDate().compareTo(o2.getStartDate()); } });
+		 */
+		return list;
 		
 	}
 	
