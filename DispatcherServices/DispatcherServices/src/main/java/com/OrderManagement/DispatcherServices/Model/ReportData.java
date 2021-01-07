@@ -15,7 +15,7 @@ import javax.persistence.Table;
 public class ReportData {
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="Request_Specialist_Id")
+	@Column(name="Report_Data_Id")
 	private int ReportDataId;
 	
 	@Column(name="Request_Id")
