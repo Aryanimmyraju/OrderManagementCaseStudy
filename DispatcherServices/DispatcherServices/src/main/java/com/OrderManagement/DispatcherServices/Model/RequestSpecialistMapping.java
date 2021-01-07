@@ -17,7 +17,7 @@ import javax.persistence.TemporalType;
 
 @Entity	
 @Table(name="RequestSpecialistMapping")
-public class RequestSpecialistMapping {
+public class RequestSpecialistMapping implements Comparable<RequestSpecialistMapping>{
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="Request_Specialist_Id")
@@ -109,6 +109,12 @@ public class RequestSpecialistMapping {
 	public void setEndDate(Date endDate) {
 		this.endDate = endDate;
 	}
+	@Override
+	  public int compareTo(RequestSpecialistMapping o) {
+	    if (getStartDate() == null || o.startDate == null)
+	      return 0;
+	    return getStartDate().compareTo(o.getStartDate());
+	  }
 	
 	
 
