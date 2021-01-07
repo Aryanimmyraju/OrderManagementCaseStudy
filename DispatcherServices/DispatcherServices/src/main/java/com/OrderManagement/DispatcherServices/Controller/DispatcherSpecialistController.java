@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.OrderManagement.DispatcherServices.Model.Request;
 import com.OrderManagement.DispatcherServices.Model.RequestSpecialistMapping;
 import com.OrderManagement.DispatcherServices.Model.Specialists;
 import com.OrderManagement.DispatcherServices.Repositories.RequestSpecialistRepository;
@@ -66,6 +67,7 @@ public class DispatcherSpecialistController {
 		  requestService.saveAll(specialistProxy.getAllRequest());
 			servicesService.saveAll(specialistProxy.getAllServices());
 			specialistService.saveAll(specialistProxy.getAllSpecialists());
+			requestSpecialist.setStatus("busy");
 			requestSpecialist.setStartDate(LocalDate.now());
 			mapping.saveMapping(requestSpecialist);
 			
@@ -75,6 +77,14 @@ public class DispatcherSpecialistController {
 	  {
 		  List<RequestSpecialistMapping> availableSpecialists = mapping.getAllRequestSpecialistMappings();
 		  return availableSpecialists; 
+	  }
+	  
+	  @GetMapping("/requests")
+	  public List<Request> getAllUnassignedRequests()
+	  {
+		  List<Request> unassiList= requestService.getAllUnassigned();
+		return unassiList;
+		  
 	  }
 	  
 	  

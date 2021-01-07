@@ -41,6 +41,9 @@ public class Request {
 	@Column(name="complexity")
 	private String complexity;
 	
+	@Column(name="Status")
+	private String Status;
+	
 	
 	@OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "service_Id", referencedColumnName = "service_Id")
@@ -58,6 +61,32 @@ public class Request {
 		this.complexity = complexity;
 		this.serviceId = serviceId;
 	}
+	
+
+	public Request(int requestId, String requestName, int userId, Date startDate, Date endDate, String priority,
+			String complexity, String status, Services serviceId) {
+		super();
+		this.requestId = requestId;
+		this.requestName = requestName;
+		this.userId = userId;
+		this.startDate = startDate;
+		this.endDate = endDate;
+		this.priority = priority;
+		this.complexity = complexity;
+		this.Status = status;
+		this.serviceId = serviceId;
+	}
+
+
+	public String getStatus() {
+		return Status;
+	}
+
+
+	public void setStatus(String status) {
+		Status = status;
+	}
+
 
 	public Request() {
 		super();
