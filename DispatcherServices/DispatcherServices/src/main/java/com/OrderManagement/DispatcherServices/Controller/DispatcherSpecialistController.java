@@ -64,10 +64,8 @@ public class DispatcherSpecialistController {
 	  
 	  @PostMapping("/mapping")
 		public void addMapping(@RequestBody RequestSpecialistMapping requestSpecialist){
-		  requestService.saveAll(specialistProxy.fetchAllRequests());
-			servicesService.saveAll(specialistProxy.getAllServices());
-			specialistService.saveAll(specialistProxy.getAllSpecialists());
-			requestSpecialist.setStatus("busy");
+		 
+			requestSpecialist.setStatus("Assigned");
 			requestSpecialist.setStartDate(LocalDate.now());
 			mapping.saveMapping(requestSpecialist);
 			

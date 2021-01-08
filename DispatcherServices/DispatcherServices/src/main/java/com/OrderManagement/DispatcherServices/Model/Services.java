@@ -28,8 +28,7 @@ public class Services {
 	
 	@ManyToMany(fetch = FetchType.LAZY,
             cascade = {
-                CascadeType.PERSIST,
-                CascadeType.MERGE
+                CascadeType.ALL
             })
     @JoinTable(name = "service_specialist",
             joinColumns = { @JoinColumn(name = "service_Id") },
