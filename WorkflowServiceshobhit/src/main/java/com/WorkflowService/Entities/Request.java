@@ -1,4 +1,4 @@
-package com.OrderManagement.DispatcherServices.Model;
+package com.WorkflowService.Entities;
 
 import java.time.LocalDate;
 import javax.persistence.CascadeType;

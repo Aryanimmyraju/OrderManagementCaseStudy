@@ -31,9 +31,9 @@ public class ReportController {
 			ReportData reportData = new ReportData();
 			reportData.setRequestId(requestSpecialistMapping.getRequestId().getRequestId());
 			reportData.setSpecialistId(requestSpecialistMapping.getSpecialistId().getSpecialistId());
-			reportData.setRequestStatus(requestSpecialistMapping.getRequestId().getStatus());
+			reportData.setRequestStatus(requestSpecialistMapping.getRequestId().getRegistrationStatus());
 			reportData.setStartDate(requestSpecialistMapping.getStartDate());
-			reportData.setEndDate(requestSpecialistMapping.getEndDate());
+			reportData.setEndDate(requestSpecialistMapping.getRequestId().getEndDate());
 			reportData.setServiceType(requestSpecialistMapping.getSpecialistId().getSpecialistName());
 			reportData.setPriority(requestSpecialistMapping.getRequestId().getPriority());
 			reportService.SaveReport(reportData);

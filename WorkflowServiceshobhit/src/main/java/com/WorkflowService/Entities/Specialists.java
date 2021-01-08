@@ -1,10 +1,9 @@
-package com.OrderManagement.DispatcherServices.Model;
+package com.WorkflowService.Entities;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.*;
-
 
 @Entity	
 @Table(name="Specialists")
@@ -25,19 +24,22 @@ public class Specialists {
     @JoinColumn(name = "service_Id", referencedColumnName = "service_Id")
 	private Services servicesid;
 
+	
+
+	public Specialists(int specialistId, String specialistName, String status, Services servicesid) {
+		super();
+		this.specialistId = specialistId;
+		this.specialistName = specialistName;
+		this.status = status;
+		this.servicesid = servicesid;
+	}
+
 	public Services getServicesid() {
 		return servicesid;
 	}
 
 	public void setServicesid(Services servicesid) {
 		this.servicesid = servicesid;
-	}
-
-	public Specialists(int specialistId, String specialistName, String status) {
-		super();
-		this.specialistId = specialistId;
-		this.specialistName = specialistName;
-		this.status = status;
 	}
 
 	public Specialists() {

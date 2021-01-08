@@ -10,14 +10,14 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import com.OrderManagement.DispatcherServices.Model.Services;
 import com.OrderManagement.DispatcherServices.Model.Specialists;
-import com.OrderManagement.DispatcherServices.Repositories.SpecialistProxy;
 import com.OrderManagement.DispatcherServices.Repositories.SpecialistRepository;
+import com.OrderManagement.DispatcherServices.Repositories.WorkflowProxy;
 
 @Service
 public class SpecialistService {
 	
 	@Autowired
-	SpecialistProxy specialistProxy;
+	WorkflowProxy specialistProxy;
 	
 	@Autowired
 	SpecialistRepository specialistRepository;

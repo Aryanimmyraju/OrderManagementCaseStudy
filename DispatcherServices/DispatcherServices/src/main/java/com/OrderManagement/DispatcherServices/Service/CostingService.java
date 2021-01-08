@@ -8,17 +8,17 @@ import org.springframework.stereotype.Service;
 
 import com.OrderManagement.DispatcherServices.Model.Costing;
 import com.OrderManagement.DispatcherServices.Model.Request;
-import com.OrderManagement.DispatcherServices.Repositories.SpecialistProxy;
+import com.OrderManagement.DispatcherServices.Repositories.WorkflowProxy;
 
 
 @Service
 public class CostingService {
 	
 	@Autowired
-	private SpecialistProxy costingProxy;
+	private WorkflowProxy costingProxy;
 	
 	public List<Costing> doCostings(){
-		List<Request> requests= costingProxy.getAllRequest();
+		List<Request> requests= costingProxy.fetchAllRequests();
 		double costing=0;
 		List<Costing> costList= new ArrayList<>();
 		for(Request request:requests)

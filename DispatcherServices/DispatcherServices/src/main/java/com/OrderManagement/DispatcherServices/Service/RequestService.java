@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 import com.OrderManagement.DispatcherServices.Model.Request;
 import com.OrderManagement.DispatcherServices.Model.Specialists;
 import com.OrderManagement.DispatcherServices.Repositories.RequestRepository;
-import com.OrderManagement.DispatcherServices.Repositories.SpecialistProxy;
+import com.OrderManagement.DispatcherServices.Repositories.WorkflowProxy;
 
 @Service
 public class RequestService {
@@ -21,7 +21,7 @@ public class RequestService {
 	private RequestRepository requestRepository;
 	
 	@Autowired
-	private SpecialistProxy specialistProxy;
+	private WorkflowProxy specialistProxy;
 	
 	public void saveAll(List<Request> list)
 	{
@@ -32,10 +32,10 @@ public class RequestService {
 	}
 
 	public List<Request> getAllUnassigned() {
-		List<Request> tr = specialistProxy.getAllRequest();
+		List<Request> tr = specialistProxy.fetchAllRequests();
 		List<Request> unassignedList = new ArrayList<>();
 		  for (Request request : tr) {
-			  if(request.getStatus().equalsIgnoreCase("yes"))
+			  if(request.getRegistrationStatus().equalsIgnoreCase("yes"))
 			  {
 				  unassignedList.add(request);
 			  }

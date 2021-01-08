@@ -1,4 +1,4 @@
-package com.OrderManagement.DispatcherServices.Model;
+package com.WorkflowService.Entities;
 
 import java.time.LocalDate;
 import java.util.Date;
@@ -26,6 +26,7 @@ public class RequestSpecialistMapping implements Comparable<RequestSpecialistMap
 
 	
 	  @OneToOne(cascade = CascadeType.ALL)
+
 	  @JoinColumn(name = "request_Id", referencedColumnName = "request_Id") 
 	  private Request requestId;
 	  
@@ -43,16 +44,19 @@ public class RequestSpecialistMapping implements Comparable<RequestSpecialistMap
 	@Column(name="start_Date")
 	private LocalDate startDate;
 	
+	@Column(name="end_Date")
+	private Date endDate;
 
+	
 	public RequestSpecialistMapping(int requestSpecialistId, Request requestId, Specialists specialistId, String status,
-			LocalDate startDate) {
+			LocalDate startDate, Date endDate) {
 		super();
 		RequestSpecialistId = requestSpecialistId;
 		this.requestId = requestId;
 		this.specialistId = specialistId;
 		this.status = status;
 		this.startDate = startDate;
-		
+		this.endDate = endDate;
 	}
 
 	public RequestSpecialistMapping() {
@@ -99,6 +103,13 @@ public class RequestSpecialistMapping implements Comparable<RequestSpecialistMap
 		this.startDate = localDate;
 	}
 
+	public Date getEndDate() {
+		return endDate;
+	}
+
+	public void setEndDate(Date endDate) {
+		this.endDate = endDate;
+	}
 	@Override
 	  public int compareTo(RequestSpecialistMapping o) {
 	    if (getStartDate() == null || o.startDate == null)

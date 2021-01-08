@@ -15,7 +15,7 @@ import com.OrderManagement.DispatcherServices.Model.Request;
 import com.OrderManagement.DispatcherServices.Model.RequestSpecialistMapping;
 import com.OrderManagement.DispatcherServices.Model.Specialists;
 import com.OrderManagement.DispatcherServices.Repositories.RequestSpecialistRepository;
-import com.OrderManagement.DispatcherServices.Repositories.SpecialistProxy;
+import com.OrderManagement.DispatcherServices.Repositories.WorkflowProxy;
 import com.OrderManagement.DispatcherServices.Service.MappingService;
 import com.OrderManagement.DispatcherServices.Service.RequestService;
 import com.OrderManagement.DispatcherServices.Service.ServicesService;
@@ -39,7 +39,7 @@ public class DispatcherSpecialistController {
 	private ServicesService servicesService;
 	
 	@Autowired
-	private SpecialistProxy specialistProxy;
+	private WorkflowProxy specialistProxy;
 	
 	@GetMapping("specialist/{specialistId}")
 	public List<Specialists> getServiceByspecialistId(@PathVariable("specialistId") int no)
@@ -64,7 +64,7 @@ public class DispatcherSpecialistController {
 	  
 	  @PostMapping("/mapping")
 		public void addMapping(@RequestBody RequestSpecialistMapping requestSpecialist){
-		  requestService.saveAll(specialistProxy.getAllRequest());
+		  requestService.saveAll(specialistProxy.fetchAllRequests());
 			servicesService.saveAll(specialistProxy.getAllServices());
 			specialistService.saveAll(specialistProxy.getAllSpecialists());
 			requestSpecialist.setStatus("busy");

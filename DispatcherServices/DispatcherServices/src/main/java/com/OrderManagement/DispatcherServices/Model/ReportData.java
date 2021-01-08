@@ -31,7 +31,7 @@ public class ReportData {
 	private LocalDate startDate;
 	
 	@Column(name="end_Date")
-	private Date endDate;
+	private LocalDate endDate;
 	
 	@Column(name="service_Type")
 	private String serviceType;
@@ -79,12 +79,12 @@ public class ReportData {
 		this.startDate = startDate;
 	}
 
-	public Date getEndDate() {
+	public LocalDate getEndDate() {
 		return endDate;
 	}
 
-	public void setEndDate(Date endDate) {
-		this.endDate = endDate;
+	public void setEndDate(LocalDate localDate) {
+		this.endDate = localDate;
 	}
 
 	public String getServiceType() {
@@ -108,7 +108,7 @@ public class ReportData {
 	}
 
 	public ReportData(int reportDataId, int requestId, int specialistId, String requestStatus, LocalDate startDate,
-			Date endDate, String serviceType, String priority) {
+			LocalDate endDate, String serviceType, String priority) {
 		super();
 		ReportDataId = reportDataId;
 		RequestId = requestId;

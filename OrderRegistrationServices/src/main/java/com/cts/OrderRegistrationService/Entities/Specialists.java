@@ -1,4 +1,4 @@
-package com.OrderManagement.DispatcherServices.Model;
+package com.cts.OrderRegistrationService.Entities;
 
 import java.util.ArrayList;
 import java.util.List;

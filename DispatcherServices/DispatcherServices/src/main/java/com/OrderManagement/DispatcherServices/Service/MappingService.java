@@ -12,13 +12,13 @@ import org.springframework.stereotype.Service;
 import com.OrderManagement.DispatcherServices.Model.RequestSpecialistMapping;
 import com.OrderManagement.DispatcherServices.Model.Services;
 import com.OrderManagement.DispatcherServices.Repositories.RequestSpecialistRepository;
-import com.OrderManagement.DispatcherServices.Repositories.SpecialistProxy;
+import com.OrderManagement.DispatcherServices.Repositories.WorkflowProxy;
 
 @Service
 public class MappingService {
 	
 	@Autowired
-	private SpecialistProxy specialistProxy;
+	private WorkflowProxy specialistProxy;
 	
 	
 	

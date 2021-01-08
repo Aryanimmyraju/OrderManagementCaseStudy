@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 
 import com.OrderManagement.DispatcherServices.Model.Services;
 import com.OrderManagement.DispatcherServices.Repositories.ServiceRepository;
-import com.OrderManagement.DispatcherServices.Repositories.SpecialistProxy;
 import com.OrderManagement.DispatcherServices.Repositories.SpecialistRepository;
 
 @Service
