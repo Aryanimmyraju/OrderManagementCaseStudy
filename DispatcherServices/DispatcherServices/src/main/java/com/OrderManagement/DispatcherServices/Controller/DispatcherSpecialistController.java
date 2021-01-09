@@ -63,6 +63,8 @@ public class DispatcherSpecialistController {
 		  List<Specialists> availableSpecialists = specialistService.getAllAvaSpecialists();
 		  return availableSpecialists; 
 	  }
+	  
+	 
 	  @PostMapping( "/mapping/{requestId}/{name}")
 	  public void addMapping(@PathVariable("requestId") int number,@PathVariable("name") String name)
 	  {
@@ -86,6 +88,7 @@ public class DispatcherSpecialistController {
 		  
 		  requestSpecialistMapping.setStatus("Assigned");
 		  requestSpecialistMapping.setStartDate(LocalDate.now());
+		  
 			mapping.saveMapping(requestSpecialistMapping);
 		 
 	  }
@@ -94,8 +97,15 @@ public class DispatcherSpecialistController {
 	  @GetMapping("/mappings") 
 	  public List<RequestSpecialistMapping> getAllMappings()
 	  {
-		  List<RequestSpecialistMapping> availableSpecialists = mapping.getAllRequestSpecialistMappings();
-		  return availableSpecialists; 
+		  List<RequestSpecialistMapping> mappings = mapping.getAllRequestSpecialistMappings();
+		  return mappings; 
+	  }
+	  
+	  @GetMapping("/automappings") 
+	  public List<RequestSpecialistMapping> getAllAutoMappings()
+	  {
+		  List<RequestSpecialistMapping> mappings = mapping.getAllAutoMappings();
+		  return mappings; 
 	  }
 	  
 	  @GetMapping("/requests")

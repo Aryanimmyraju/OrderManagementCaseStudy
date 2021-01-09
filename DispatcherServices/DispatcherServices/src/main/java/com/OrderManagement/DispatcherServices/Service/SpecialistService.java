@@ -22,6 +22,8 @@ public class SpecialistService {
 	@Autowired
 	SpecialistRepository specialistRepository;
 	
+	
+	
 
 	public List<Specialists> getServiceByspecialistId(int no) {
 		List<Specialists> tr = specialistProxy.getServiceByspecialistId(no);
@@ -40,10 +42,10 @@ public class SpecialistService {
 		  return tr;
 	}
 	public List<Specialists> getAllAvaSpecialists() {
-		List<Specialists> tr = specialistProxy.getAllSpecialists();
+		List<Specialists> tr = specialistRepository.findAll();
 		  List<Specialists> availableSpecialists = new ArrayList<>();
 		  for (Specialists specialists : tr) {
-			  if(specialists.getStatus().equalsIgnoreCase("available"))
+			  if(specialists.getStatus().equalsIgnoreCase("free"))
 			  {
 			availableSpecialists.add(specialists);
 			  }
