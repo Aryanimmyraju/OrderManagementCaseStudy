@@ -60,7 +60,7 @@ public class DispatcherSpecialistController {
 	  @GetMapping("/specialists") 
 	  public List<Specialists> getAllAvailableSpecialists()
 	  {
-		  List<Specialists> availableSpecialists = specialistService.getAllSpecialists();
+		  List<Specialists> availableSpecialists = specialistService.getAllAvaSpecialists();
 		  return availableSpecialists; 
 	  }
 	  @PostMapping( "/mapping/{requestId}/{name}")
@@ -68,8 +68,10 @@ public class DispatcherSpecialistController {
 	  {
 		  RequestSpecialistMapping requestSpecialistMapping= new RequestSpecialistMapping();
 		  List<Request> requestList = requestService.getAllUnassigned();
+		  
 		  for(Request rq:requestList)
 		  {
+			  System.out.println(rq.getRequestId());
 			  if(rq.getRequestId()==number) {
 				  requestSpecialistMapping.setRequestId(rq);
 			  }

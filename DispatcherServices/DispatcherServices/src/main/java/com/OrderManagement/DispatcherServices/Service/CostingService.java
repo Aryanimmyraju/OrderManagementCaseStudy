@@ -13,10 +13,7 @@ import com.OrderManagement.DispatcherServices.Repositories.WorkflowProxy;
 
 @Service
 public class CostingService {
-	
-	@Autowired
-	private WorkflowProxy costingProxy;
-	
+		
 	@Autowired
 	private RequestService requestService;
 	

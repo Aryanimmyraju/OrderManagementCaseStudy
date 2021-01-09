@@ -35,6 +35,11 @@ public class SpecialistService {
 	}
 
 	public List<Specialists> getAllSpecialists() {
+		List<Specialists> tr = specialistRepository.findAll();
+		  
+		  return tr;
+	}
+	public List<Specialists> getAllAvaSpecialists() {
 		List<Specialists> tr = specialistProxy.getAllSpecialists();
 		  List<Specialists> availableSpecialists = new ArrayList<>();
 		  for (Specialists specialists : tr) {
