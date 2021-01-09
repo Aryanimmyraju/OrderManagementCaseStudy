@@ -17,8 +17,12 @@ public class CostingService {
 	@Autowired
 	private WorkflowProxy costingProxy;
 	
+	@Autowired
+	private RequestService requestService;
+	
+	
 	public List<Costing> doCostings(){
-		List<Request> requests= costingProxy.fetchAllRequests();
+		List<Request> requests= requestService.getAll();
 		double costing=0;
 		List<Costing> costList= new ArrayList<>();
 		for(Request request:requests)
@@ -52,6 +56,7 @@ public class CostingService {
 			cost.setRequestId(request);
 			cost.setServiceId(request.getServiceId());
 			cost.setCost(costing);
+			
 			costList.add(cost);
 		}
 		return costList;

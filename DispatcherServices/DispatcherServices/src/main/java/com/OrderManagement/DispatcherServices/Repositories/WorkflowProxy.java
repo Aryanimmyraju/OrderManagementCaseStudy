@@ -25,8 +25,9 @@ public interface WorkflowProxy {
 	@GetMapping("specialists/{SpecialistName}")
 	public List<Specialists> getSpecialistbyName(@PathVariable("SpecialistName") String no);
 	
-	@GetMapping("/o")
-	public List<Request>  fetchAllRequests();
+	/*
+	 * @GetMapping("/o") public List<Request> fetchAllRequests();
+	 */
 	
 	@GetMapping("/services")
 	public List<Services> getAllServices();

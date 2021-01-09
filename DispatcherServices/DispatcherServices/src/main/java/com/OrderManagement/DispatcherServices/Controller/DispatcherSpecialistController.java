@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -24,6 +25,7 @@ import com.OrderManagement.DispatcherServices.Service.SpecialistService;
 
 
 @RestController
+@CrossOrigin (origins="*")
 public class DispatcherSpecialistController {
 	
 	@Autowired
@@ -61,15 +63,32 @@ public class DispatcherSpecialistController {
 		  List<Specialists> availableSpecialists = specialistService.getAllSpecialists();
 		  return availableSpecialists; 
 	  }
-	  
-	  @PostMapping("/mapping")
-		public void addMapping(@RequestBody RequestSpecialistMapping requestSpecialist){
+	  @PostMapping( "/mapping/{requestId}/{name}")
+	  public void addMapping(@PathVariable("requestId") int number,@PathVariable("name") String name)
+	  {
+		  RequestSpecialistMapping requestSpecialistMapping= new RequestSpecialistMapping();
+		  List<Request> requestList = requestService.getAllUnassigned();
+		  for(Request rq:requestList)
+		  {
+			  if(rq.getRequestId()==number) {
+				  requestSpecialistMapping.setRequestId(rq);
+			  }
+		  }
+		  List<Specialists> specialistList = specialistService.getAllSpecialists();
+		  for(Specialists sp:specialistList)
+		  {
+			  if(sp.getSpecialistName().equalsIgnoreCase(name)) {
+				  requestSpecialistMapping.setSpecialistId(sp);
+			  }
+		  }
+		  
+		  requestSpecialistMapping.setStatus("Assigned");
+		  requestSpecialistMapping.setStartDate(LocalDate.now());
+			mapping.saveMapping(requestSpecialistMapping);
 		 
-			requestSpecialist.setStatus("Assigned");
-			requestSpecialist.setStartDate(LocalDate.now());
-			mapping.saveMapping(requestSpecialist);
-			
-		}
+	  }
+	 
+		
 	  @GetMapping("/mappings") 
 	  public List<RequestSpecialistMapping> getAllMappings()
 	  {

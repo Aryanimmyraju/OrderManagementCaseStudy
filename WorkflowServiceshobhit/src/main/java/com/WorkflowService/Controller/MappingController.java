@@ -1,8 +1,10 @@
 package com.WorkflowService.Controller;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -28,5 +30,11 @@ public class MappingController {
 			mappingService.saveMapping(requestSpecialist);
 			
 		}
+	 @GetMapping("/mappings") 
+	  public List<RequestSpecialistMapping> getAllMappings()
+	  {
+		  List<RequestSpecialistMapping> availableSpecialists = dispatcherServiceProxy.getAllMappings();
+		  return availableSpecialists; 
+	  }
 
 }

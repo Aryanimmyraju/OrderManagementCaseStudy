@@ -30,12 +30,19 @@ public class RequestService {
 			requestRepository.save(request);
 		}
 	}
+	public List<Request> getAll() {
+		List<Request> tr = requestRepository.findAll();
+		
+	  
+		return tr;
+		 
+	}
 
 	public List<Request> getAllUnassigned() {
-		List<Request> tr = specialistProxy.fetchAllRequests();
+		List<Request> tr = requestRepository.findAll();
 		List<Request> unassignedList = new ArrayList<>();
 		  for (Request request : tr) {
-			  if(request.getRegistrationStatus().equalsIgnoreCase("yes"))
+			  if(request.getRegistrationStatus().equalsIgnoreCase("no"))
 			  {
 				  unassignedList.add(request);
 			  }
