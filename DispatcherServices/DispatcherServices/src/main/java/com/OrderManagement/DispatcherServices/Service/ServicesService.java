@@ -24,5 +24,10 @@ public class ServicesService {
 			serviceRepository.save(services);
 		}
 	}
+	public List<Services> getAll()
+	{
+		List<Services> services=serviceRepository.findAll();
+		return services;
+	}
 
 }

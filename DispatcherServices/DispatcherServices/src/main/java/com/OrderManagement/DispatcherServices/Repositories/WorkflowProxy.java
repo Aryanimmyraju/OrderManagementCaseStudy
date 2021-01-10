@@ -32,5 +32,8 @@ public interface WorkflowProxy {
 	@GetMapping("/services")
 	public List<Services> getAllServices();
 	
+	@GetMapping("/specialists/{RequestId}")
+	public List<Specialists> getSpecialistbyRequestId(@PathVariable("RequestId") int no);
+	
 	
 }

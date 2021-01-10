@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -13,7 +15,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.OrderManagement.DispatcherServices.Model.Request;
+import com.OrderManagement.DispatcherServices.Model.RequestInfo;
 import com.OrderManagement.DispatcherServices.Model.RequestSpecialistMapping;
+import com.OrderManagement.DispatcherServices.Model.Services;
 import com.OrderManagement.DispatcherServices.Model.Specialists;
 import com.OrderManagement.DispatcherServices.Repositories.RequestSpecialistRepository;
 import com.OrderManagement.DispatcherServices.Repositories.WorkflowProxy;
@@ -55,6 +59,12 @@ public class DispatcherSpecialistController {
 	
 		List<Specialists> transaction = specialistService.getSpecialistbyName(no);
 		return transaction;
+	}
+	
+	@GetMapping("specialistss/{RequestId}")
+	public List<Specialists> getSpecialistByRequestId(@PathVariable("RequestId") int no){
+		 List<Specialists> specialistsByRequestId = specialistService.getSpecialistbyRequestId(no);
+		 return specialistsByRequestId;
 	}
 	
 	  @GetMapping("/specialists") 
@@ -115,6 +125,30 @@ public class DispatcherSpecialistController {
 		return unassiList;
 		  
 	  }
+	  @PostMapping(value="/addnewOrder",consumes = MediaType.APPLICATION_JSON_VALUE,produces = MediaType.APPLICATION_JSON_VALUE)
+		public void addCustomer(@RequestBody RequestInfo info)
+		{
+		       Request request = new Request();
+		       request.setRequestId(info.getRequestId());
+		       request.setFirstName(info.getFirstName());
+		       request.setLastName(info.getLastName());
+		       request.setStartDate(info.getStartDate());
+		       request.setEndDate(info.getEndDate());
+		       request.setPriority(info.getPriority());
+		       request.setEmailId(info.getEmailId());
+		       request.setRegistrationStatus(info.getRequesterStatus());
+		       List<Services> services= servicesService.getAll();
+		      
+		       for(Services services2: services)
+		       {
+		    	   if(info.getServiceType().equalsIgnoreCase(services2.getServiceName()))
+		    	   {
+		    		   request.setServiceId(services2);
+		    	   }
+		       }
+		       
+		      requestService.save(request);
+		}  
 	  
 	  
 }

@@ -37,6 +37,13 @@ public class RequestService {
 		return tr;
 		 
 	}
+	public void save(Request list)
+	{
+		
+			requestRepository.save(list);
+		
+	}
+	
 
 	public List<Request> getAllUnassigned() {
 		List<Request> tr = requestRepository.findAll();

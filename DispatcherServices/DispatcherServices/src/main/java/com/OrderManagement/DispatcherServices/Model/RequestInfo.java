@@ -1,4 +1,4 @@
-package com.cts.OrderRegistrationService.Entities;
+package com.OrderManagement.DispatcherServices.Model;
 
 import java.time.LocalDate;
 
@@ -13,47 +13,50 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 
-
+/*
 @Entity
-@Table(name="requestinfo")
+@Table(name="requestinfo")*/
 public class RequestInfo {
-	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "request_Id")
+	/*
+	 * @Id
+	 * 
+	 * @GeneratedValue(strategy = GenerationType.IDENTITY)
+	 * 
+	 * @Column(name = "request_Id")
+	 */
 	private int requestId;
 	
-	@Column(name="userId")
+	/* @Column(name="userId") */
 	private int userId;
 	
-	@Column(name = "firstname")
+	//@Column(name = "firstname")
 	private String firstName;
 	
-	@Column(name = "lastname")
+	//@Column(name = "lastname")
 	private String lastName;
 	
-	@Column(name = "startdate")
+	//@Column(name = "startdate")
 	private LocalDate startDate;
 	
-	@Column(name = "enddate")
+	//@Column(name = "enddate")
 	private LocalDate endDate;
 	
-	@Column(name = "priority")
+	//@Column(name = "priority")
 	private String priority;
 	
-	@Column(name = "complexity")
+	//@Column(name = "complexity")
 	private String complexity;
 	
-	@Column(name="servicetype")
+	//@Column(name="servicetype")
 	private String ServiceType;
 	
-	@Column(name = "emailid")
+	//@Column(name = "emailid")
 	private String emailId;
 	
-	@Column(name="Description")
+	//@Column(name="Description")
 	private String Description;
 	
-	@Column(name="registration_Status")
+	//@Column(name="registration_Status")
 	private String RequesterStatus;
 
 	public int getRequestId() {

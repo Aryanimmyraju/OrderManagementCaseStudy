@@ -26,13 +26,17 @@ public class SpecialistService {
 	
 
 	public List<Specialists> getServiceByspecialistId(int no) {
-		List<Specialists> tr = specialistProxy.getServiceByspecialistId(no);
+		List<Specialists> tr = specialistRepository.getServiceByspecialistId(no);
 		return tr;
 	}
 	
 	
 	public List<Specialists> getSpecialistbyName(String no){
-		List<Specialists> tr = specialistProxy.getSpecialistbyName(no);
+		List<Specialists> tr = specialistRepository.getSpecialistbyName(no);
+		return tr;
+	}
+	public List<Specialists> getSpecialistbyRequestId(int no){
+		List<Specialists> tr = specialistProxy.getSpecialistbyRequestId(no);
 		return tr;
 	}
 
